@@ -37,7 +37,7 @@ app.post("/client-token", async (req, res) => {
   return res.send(json);
 });
 
-app.post("/api/authorize", async (req, res) => {
+app.post("/authorize", async (req, res) => {
   const { token } = req.body;
   const url = `${PRIMER_API_URL}/payments`;
 

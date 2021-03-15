@@ -26,7 +26,7 @@ async function onLoaded() {
      */
     onTokenizeSuccess(paymentMethod) {
       // Send the payment method token to your server
-      return fetch("/api/authorize", {
+      return fetch("/authorize", {
         method: "post",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(paymentMethod),
