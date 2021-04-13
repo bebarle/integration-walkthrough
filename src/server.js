@@ -65,5 +65,5 @@ app.post("/authorize", async (req, res) => {
   return res.send(json);
 });
 
-console.log(`Checkout server listening on port ${PORT}`);
+console.log(`Checkout server listening on port ${PORT}.\n\nYou can now view the Checkout in a web browser at http://localhost:${PORT}`);
 app.listen(PORT);

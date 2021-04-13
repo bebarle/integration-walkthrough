@@ -19,7 +19,7 @@ $ yarn
 $ npm i
 ```
 
-### Set the environnement variables
+### Set the environment variables
 
 Grab your API Key, or create a new API Key, from [Primer's dashboard](https://sandbox-dashboard.primer.io/developers).
 
@@ -47,10 +47,10 @@ $ yarn start
 $ npm start
 ```
 
-The server is deployed on port 80 by default. You can set the port by setting the `PORT` environment variable in the `.env` file.
+The server is deployed on port 8880 by default. You can change the port by setting the `PORT` environment variable in the `.env` file.
 
 ### Access the checkout
 
-Check the checkout at [http://localhost/](http://localhost/).
+Check the checkout at [http://localhost:8880/](http://localhost:8880/).
 
 ![Checkout UI](./images/checkout.png)
