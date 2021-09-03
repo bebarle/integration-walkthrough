@@ -3,9 +3,12 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const express = require("express");
 const fetch = require("node-fetch");
+const https = require('https');
+const fs = require('fs');
+
 require("dotenv").config();
 
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 443;
 const API_KEY = process.env.API_KEY;
 const PRIMER_API_URL = process.env.PRIMER_API_URL;
 
@@ -42,7 +45,7 @@ app.post("/authorize", async (req, res) => {
   const url = `${PRIMER_API_URL}/payments`;
 
   const orderId = "order-123." + Math.random();
-
+  console.log('[TEST] body: ', req.body)
   const response = await fetch(url, {
     method: "post",
     headers: {
@@ -61,9 +64,20 @@ app.post("/authorize", async (req, res) => {
   });
 
   const json = await response.json();
+  console.log('[TEST] authorize res:', json);
 
   return res.send(json);
 });
 
-console.log(`Checkout server listening on port ${PORT}.\n\nYou can now view the Checkout in a web browser at http://localhost:${PORT}`);
-app.listen(PORT);
+// console.log(`Checkout server listening on port ${PORT}.\n\nYou can now view the Checkout in a web browser at http://localhost:${PORT}`);
+// app.listen(PORT);
+
+const options = {
+  key: fs.readFileSync('./ssl/localhost-key.pem'),
+  cert: fs.readFileSync('./ssl/localhost.pem')
+};
+
+const httpsServer = https.createServer(options, app);
+httpsServer.listen(PORT, () => {
+  console.log(`Checkout server listening on port ${PORT}.\n\nYou can now view the Checkout in a web browser at https://localhost:${PORT}`);  
+})
